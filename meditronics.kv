@@ -1,0 +1,70 @@
+
+<MainScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'Welcome to Meditronics'
+            font_size: '24sp'
+        Button:
+            text: 'Set Medication Reminder'
+            on_release: app.root.current = 'medication_prompt'
+        Button:
+            text: 'Go to Dashboard'
+            on_release: app.root.current = 'dashboard'
+
+<MedicationPromptScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'Meditronics Medication Prompt'
+            font_size: '24sp'
+        GridLayout:
+            cols: 2
+            spacing: '5dp'
+            Label:
+                text: 'Medication Name:'
+            TextInput:
+                id: medication_name_input
+                multiline: False
+            Label:
+                text: 'Dosage:'
+            TextInput:
+                id: medication_dosage_input
+                multiline: False
+            Label:
+                text: 'Time:'
+            TextInput:
+                id: medication_time_input
+                multiline: False
+        Button:
+            text: 'Set Reminder'
+            on_release: root.set_reminder()
+        Button:
+            text: 'Go Back'
+            on_release: app.root.current = 'main'
+
+<DashboardScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        GridLayout:
+            cols: 2
+            spacing: '20dp'
+            Button:
+                text: 'Reminders'
+                on_release: root.show_reminders()
+            Button:
+                text: 'Diet Plan'
+                on_release: root.show_diet_plan()
+            Button:
+                text: 'Settings'
+                on_release: root.show_settings()
+            Button:
+                text: 'Call'
+                on_release: root.call_doctor()
+
+        Button:
+            text: 'Go Back'
+            size_hint: None, None
+            size: 150, 50
+            pos_hint: {'center_x': 0.5}
+            on_release: app.root.current = 'main'
